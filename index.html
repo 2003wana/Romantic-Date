@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff8f0">
+<title>وزارة الطلعات والشؤون الزوجية 💗</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap');
+:root{--cream:#fff8f0;--pink:#f7b7c9;--hot:#ef729c;--purple:#a996d9;--ink:#292333;--yellow:#ffe59a;--green:#bfe6cb}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--cream);color:var(--ink);font-family:'Changa',system-ui,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.24;background-image:radial-gradient(#e9a5bb 1.2px,transparent 1.2px);background-size:20px 20px;z-index:-1}
+.wrap{width:min(100% - 28px,560px);margin:0 auto;padding:28px 0 36px;min-height:100vh;display:flex;align-items:center}
+.card{width:100%;background:#fffdfb;border:3px solid var(--ink);border-radius:28px;box-shadow:8px 8px 0 var(--ink);padding:25px 22px 24px;position:relative;overflow:hidden;animation:pop .35s ease}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;font-weight:700}
+.stamp{background:var(--yellow);border:2px solid var(--ink);border-radius:999px;padding:5px 10px;transform:rotate(-3deg)}
+.mini{color:#766d7e}
+.heart{font-size:72px;line-height:1.15;text-align:center;margin:18px auto 10px;filter:drop-shadow(3px 4px 0 #f6d5df);animation:float 2s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-7px) rotate(4deg)}}
+h1,h2,p{margin-top:0}
+h1{font-size:clamp(27px,7vw,38px);line-height:1.35;text-align:center;margin-bottom:10px;font-weight:800}
+h2{font-size:clamp(22px,5.8vw,30px);line-height:1.45;text-align:center;margin:22px 0 8px}
+.sub{text-align:center;color:#746b7c;font-size:15px;line-height:1.9;margin:0 auto 22px;max-width:420px}
+.btn{font:700 16px 'Changa',sans-serif;border:2.5px solid var(--ink);border-radius:15px;padding:13px 16px;background:white;color:var(--ink);cursor:pointer;box-shadow:0 4px 0 var(--ink);transition:transform .13s,box-shadow .13s;min-height:54px}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.btn.primary{background:var(--pink);width:100%;margin-top:10px}
+.btn.secondary{background:#fff;width:100%;margin-top:12px}
+.btn:focus-visible{outline:3px solid var(--purple);outline-offset:3px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:20px 0 12px}
+.option{background:#fff;border:2.5px solid var(--ink);border-radius:16px;min-height:91px;padding:12px 9px;font:700 15px 'Changa',sans-serif;color:var(--ink);cursor:pointer;box-shadow:0 4px 0 var(--ink);transition:transform .15s,background .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.option .emoji{font-size:28px;line-height:1.1}
+.option:hover{transform:translateY(-2px)}
+.option.good{background:#fce0e9}
+.option.bad{animation:shake .38s ease;background:#fff0f0}
+@keyframes shake{0%,100%{transform:translateX(0) rotate(0)}20%{transform:translateX(-6px) rotate(-2deg)}40%{transform:translateX(6px) rotate(2deg)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.notice{display:none;text-align:center;background:#fff0f4;border:2px dashed var(--hot);border-radius:14px;padding:12px 13px;margin:15px 0 6px;font-weight:700;line-height:1.8;animation:pop .25s ease}
+.notice.show{display:block}
+.progress{display:flex;gap:5px;justify-content:center;margin:18px 0 4px}
+.progress span{height:7px;flex:1;max-width:50px;background:#eee4e8;border-radius:10px;border:1px solid #292333}
+.progress span.active{background:var(--hot)}
+.question-tag{display:inline-block;background:#eee8fb;border:2px solid var(--ink);border-radius:9px;padding:3px 10px;font-size:12px;font-weight:700}
+.center{text-align:center}
+.ticket{background:#fff8ee;border:3px dashed var(--ink);border-radius:20px;padding:18px;margin:20px 0 12px;position:relative}
+.ticket:before,.ticket:after{content:"";position:absolute;width:24px;height:24px;border-radius:50%;background:var(--cream);border:2px solid var(--ink);top:calc(50% - 12px)}
+.ticket:before{right:-14px}.ticket:after{left:-14px}
+.ticket-title{text-align:center;font-size:23px;font-weight:800;margin-bottom:4px}
+.ticket-sub{text-align:center;font-size:12px;color:#786d7e;margin-bottom:15px}
+.ticket-row{display:flex;justify-content:space-between;gap:12px;border-top:1px dashed #b9a9b4;padding:10px 0;font-size:14px}
+.ticket-row strong{max-width:65%;text-align:left}
+.final-note{background:var(--yellow);border:2px solid var(--ink);border-radius:13px;padding:12px;text-align:center;font-weight:700;line-height:1.8;margin:12px 0}
+.footer{text-align:center;color:#867a88;font-size:11px;margin-top:18px}
+.tiny-heart{position:absolute;font-size:22px;opacity:.45}
+@media(max-width:390px){.card{padding:21px 16px}.options{gap:9px}.option{font-size:14px;min-height:85px}}
+</style>
+</head>
+<body>
+<div class="wrap"><main class="card" id="app" aria-live="polite"></main></div>
+<script>
+const app = document.getElementById('app');
+const state = {day:'',vibe:'',activity:'',food:'',budget:'',surprise:''};
+let step = 0;
+const questions = [
+ {key:'day',tag:'المحطة ١ من ٥',title:'إمتى بدنا نسرق لنا كم ساعة؟',sub:'اختار بحكمة يا حبيبي… لجنة الطلعات تراقبك 👀',options:[
+  ['🌙','هالأسبوع','good'],['📆','بكرا إذا بتقدري','good'],['🛋️','خلينا نشوف بعدين','bad'],['🙃','مش ضروري نطلع','bad']]},
+ {key:'vibe',tag:'المحطة ٢ من ٥',title:'شو أجواء موعدنا؟',sub:'تذكير بسيط: الرومانسية مش بند اختياري 🌝',options:[
+  ['💗','رومانسي وهادي','good'],['🎉','نضحك ونغيّر جو','good'],['📺','نحضر مسلسل بالبيت','bad'],['😴','ننام أحسن','bad']]},
+ {key:'activity',tag:'المحطة ٣ من ٥',title:'طيب… شو بدنا نعمل؟',sub:'فكّر منيح قبل ما تجاوب 😂',options:[
+  ['🍽️','عشا بمكان حلو','good'],['☕','قهوة وحكي على رواق','good'],['🚶‍♀️','نتمشى سوا','good'],['🏠','نقعد بالبيت وخلاص','bad']]},
+ {key:'food',tag:'المحطة ٤ من ٥',title:'والأكل؟ سؤال مصيري 🍟',sub:'الإجابة الخاطئة قد تؤدي إلى إعادة المحاولة فورًا.',options:[
+  ['🍕','بيتزا أو باستا','good'],['🍔','برغر وبطاطا','good'],['🍣','نجرب إشي جديد','good'],['🥣','كل واحد يدبّر حاله','bad']]},
+ {key:'budget',tag:'المحطة ٥ من ٥',title:'كم الميزانية يا كريم؟ 🌝',sub:'الكرم في المشاعر مطلوب… والميزانية نتفاهم عليها 😂',options:[
+  ['🪙','خفيفة ولطيفة','good'],['💳','متوسطة ومريحة','good'],['✨','على قدّ ما ننبسط','good'],['🚫','صفر شيكل، بس نطلع','bad']]}
+];
+const replies = [
+ ['🚨 طلب تأجيل الموعد مرفوض!','وزارة الطلعات بتطلب منك إعادة التفكير… جرّب جوابًا ألطف 😌'],
+ ['📢 تم رصد محاولة تهرّب!','الرومانسية بدها شوية مجهود يا حبيبي. جرّب مرة ثانية 💗'],
+ ['🙅‍♀️ هذا الخيار لم يجتز الفحص!','نرجو اختيار نشاط يليق بموعد تحت إشراف الزوجة 😂'],
+ ['🍽️ لجنة الطعام غير موافقة!','فكّر بوجبة فيها شوية حبّ واهتمام… وحاول من جديد 😭'],
+ ['💸 قسم الميزانية عنده ملاحظات!','الموعد مش لازم يكون غالي، بس صفر شيكل؟ بدنا نراجع القرار 🌝']
+];
+function header(stepNum=0){return `<div class="topline"><span class="stamp">💌 تصريح موعد رسمي</span><span class="mini">وزارة الطلعات والشؤون الزوجية</span></div>${stepNum?`<div class="progress">${questions.map((q,i)=>`<span class="${i<stepNum?'active':''}"></span>`).join('')}</div>`:''}`}
+function renderIntro(){
+ app.innerHTML = `${header()}<div class="heart">💗</div><h1>وزارة الطلعات<br>والشؤون الزوجية</h1><p class="sub">طلب رسمي لترتيب موعد رومانسي مع الزوج المحبوب.<br>يرجى الإجابة بصدق… مع العلم أن بعض الخيارات قد لا تنال موافقة الإدارة 🌝</p><button class="btn primary" onclick="start()">تقديم طلب الطلعة 💌</button><div class="footer">نحبّك، لكن الطلبات تخضع للمراجعة 😂</div>`;
+}
+function start(){step=0;renderQuestion()}
+function renderQuestion(){
+ const q=questions[step];
+ app.innerHTML=`${header(step+1)}<div class="center" style="margin-top:18px"><span class="question-tag">${q.tag}</span></div><div class="heart" style="font-size:49px;margin:10px auto 0">${['📆','💞','✨','🍕','💸'][step]}</div><h2>${q.title}</h2><p class="sub">${q.sub}</p><div class="options">${q.options.map((o,i)=>`<button class="option" onclick="choose(${i},this)"><span class="emoji">${o[0]}</span><span>${o[1]}</span></button>`).join('')}</div><div id="notice" class="notice"></div><button id="next" class="btn primary" style="display:none" onclick="next()">موافقة الإدارة؟ كمّل 💗</button><div class="footer">كل الإجابات تُراجع من قبل الزوجة 🌝</div>`;
+}
+function choose(i,el){
+ const q=questions[step], option=q.options[i];
+ document.querySelectorAll('.option').forEach(b=>{b.classList.remove('good','bad')});
+ const note=document.getElementById('notice');
+ if(option[2]==='bad'){
+   el.classList.add('bad');
+   const r=replies[step];
+   note.innerHTML=`<strong>${r[0]}</strong><br>${r[1]}`;
+   note.classList.add('show');
+   document.getElementById('next').style.display='none';
+   state[q.key]='';
+   return;
+ }
+ el.classList.add('good');state[q.key]=option[1];
+ note.innerHTML='✅ اختيار مقبول من الإدارة… أخيرًا جواب يفرّح القلب! 💗';
+ note.classList.add('show');
+ document.getElementById('next').style.display='block';
+}
+function next(){if(!state[questions[step].key])return;if(step<questions.length-1){step++;renderQuestion()}else renderFinal()}
+function renderFinal(){
+ app.innerHTML=`${header()}<div class="heart">🎟️</div><h1 style="font-size:31px">تمت الموافقة يا حبيبي! 💗</h1><p class="sub">بعد مراجعة دقيقة ومداولات طويلة، تم اعتماد طلب الموعد رسميًا.</p><div class="ticket"><div class="ticket-title">تذكرة موعدنا الرومانسي 💌</div><div class="ticket-sub">صادرة عن وزارة الطلعات والشؤون الزوجية</div><div class="ticket-row"><span>📅 الموعد</span><strong>${state.day}</strong></div><div class="ticket-row"><span>💞 الأجواء</span><strong>${state.vibe}</strong></div><div class="ticket-row"><span>✨ النشاط</span><strong>${state.activity}</strong></div><div class="ticket-row"><span>🍽️ الأكل</span><strong>${state.food}</strong></div><div class="ticket-row"><span>💸 الميزانية</span><strong>${state.budget}</strong></div></div><div class="final-note">شرط التذكرة: طلعة حلوة، ضحك كثير، وموبايلات على جنب شوي 🥹❤️<br>ممنوع إلغاء الموعد بدون موافقة الإدارة 🌝</div><button class="btn primary" onclick="window.print()">🖨️ احفظوا التذكرة / اطبعوها</button><button class="btn secondary" onclick="restart()">نعيد الطلب من الأول 🔄</button><div class="footer">تمت الموافقة بحبّ شديد 💗</div>`;
+}
+function restart(){for(const k in state)state[k]='';renderIntro()}
+renderIntro();
+</script>
+</body>
+</html>
