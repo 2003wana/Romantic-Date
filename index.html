@@ -53,48 +53,65 @@ h2{font-size:clamp(22px,5.8vw,30px);line-height:1.45;text-align:center;margin:22
 .footer{text-align:center;color:#867a88;font-size:11px;margin-top:18px}
 .tiny-heart{position:absolute;font-size:22px;opacity:.45}
 @media(max-width:390px){.card{padding:21px 16px}.options{gap:9px}.option{font-size:14px;min-height:85px}}
-
-.yesno{position:relative;display:flex;flex-direction:column;gap:12px;max-width:330px;margin:20px auto 12px}.runaway{transition:left .13s,top .13s;z-index:2}.invite-card{background:linear-gradient(145deg,#fff4f7,#fff9e9);border:3px solid var(--ink);border-radius:22px;padding:22px 19px;margin:16px 0 18px;box-shadow:5px 5px 0 var(--pink);text-align:center;position:relative}.invite-decor{color:#d65c87;font-size:19px;font-weight:800;letter-spacing:3px}.invite-heading{font-size:25px;font-weight:800;margin:8px 0 16px;color:#b43f6a}.invite-body{font-size:16px;line-height:2.05;text-align:right;white-space:normal}.invite-card .invite-decor:last-child{margin-top:14px;font-size:15px;letter-spacing:0}
-@media print{body{background:white}.wrap{width:100%;padding:0;display:block}.card{border:0;box-shadow:none;max-width:100%;padding:8px;animation:none}.topline,.footer,.progress,.btn,.heart,.sub,.question-tag{display:none!important}.ticket{break-inside:avoid}.invite-card{box-shadow:none;break-inside:avoid;border:2px solid #333;margin-top:10px}.invite-heading{color:#8e3155}}
-
 </style>
 </head>
 <body>
 <div class="wrap"><main class="card" id="app" aria-live="polite"></main></div>
 <script>
 const app = document.getElementById('app');
-const state = {day:'بكرا',place:'عشاء بمطعم ولفة بالسيارة',food:'برجر (عند المطعم الي جربناه مع بعض 🌝)',time:'الساعة ٨:٠٠ مساءً'};
-let step = -1;
+const state = {day:'',vibe:'',activity:'',food:'',budget:'',surprise:''};
+let step = 0;
 const questions = [
- {key:'day',tag:'خطة الموعد ١ من ٤',title:'متى بدنا نطلع يا روحي؟',sub:'خير البرّ عاجله 🌝',emoji:'📅',options:[['🌝','بكرا','good'],['⏳','الأسبوع الجاي','bad'],['🙃','بنشوف بعدين','bad']]},
- {key:'place',tag:'خطة الموعد ٢ من ٤',title:'وين بدك تاخدني؟',sub:'اختيار المكان مسؤولية وطنية 😂❤️',emoji:'🚗',options:[['🍽️','عشاء بمطعم ولفة بالسيارة','good'],['🛋️','نضل بالبيت','bad'],['🏪','نجيب أكل ونرجع','bad']]},
- {key:'food',tag:'خطة الموعد ٣ من ٤',title:'شو بتحبّي تتعشي؟',sub:'تلميح صغير: إحنا مجرّبينه سوا 🌝',emoji:'🍔',options:[['🍔','برجر (عند المطعم الي جربناه مع بعض 🌝)','good'],['🍕','بيتزا','bad'],['🥗','سلطة وخلاص','bad']]},
- {key:'time',tag:'خطة الموعد ٤ من ٤',title:'أيّة ساعة يا حلو؟',sub:'الالتزام بالموعد من أساسيات الرومانسية 💌',emoji:'🕗',options:[['🕗','الساعة ٨:٠٠ مساءً','good'],['🕕','الساعة ٦:٠٠ المسا','bad'],['🌙','على وقت ما نفضى','bad']]}
+ {key:'day',tag:'المحطة ١ من ٥',title:'إمتى بدنا نسرق لنا كم ساعة؟',sub:'اختار بحكمة يا حبيبي… لجنة الطلعات تراقبك 👀',options:[
+  ['🌙','هالأسبوع','good'],['📆','بكرا إذا بتقدري','good'],['🛋️','خلينا نشوف بعدين','bad'],['🙃','مش ضروري نطلع','bad']]},
+ {key:'vibe',tag:'المحطة ٢ من ٥',title:'شو أجواء موعدنا؟',sub:'تذكير بسيط: الرومانسية مش بند اختياري 🌝',options:[
+  ['💗','رومانسي وهادي','good'],['🎉','نضحك ونغيّر جو','good'],['📺','نحضر مسلسل بالبيت','bad'],['😴','ننام أحسن','bad']]},
+ {key:'activity',tag:'المحطة ٣ من ٥',title:'طيب… شو بدنا نعمل؟',sub:'فكّر منيح قبل ما تجاوب 😂',options:[
+  ['🍽️','عشا بمكان حلو','good'],['☕','قهوة وحكي على رواق','good'],['🚶‍♀️','نتمشى سوا','good'],['🏠','نقعد بالبيت وخلاص','bad']]},
+ {key:'food',tag:'المحطة ٤ من ٥',title:'والأكل؟ سؤال مصيري 🍟',sub:'الإجابة الخاطئة قد تؤدي إلى إعادة المحاولة فورًا.',options:[
+  ['🍕','بيتزا أو باستا','good'],['🍔','برغر وبطاطا','good'],['🍣','نجرب إشي جديد','good'],['🥣','كل واحد يدبّر حاله','bad']]},
+ {key:'budget',tag:'المحطة ٥ من ٥',title:'كم الميزانية يا كريم؟ 🌝',sub:'الكرم في المشاعر مطلوب… والميزانية نتفاهم عليها 😂',options:[
+  ['🪙','خفيفة ولطيفة','good'],['💳','متوسطة ومريحة','good'],['✨','على قدّ ما ننبسط','good'],['🚫','صفر شيكل، بس نطلع','bad']]}
 ];
-const rejection = [
- ['🚨 تم رفض الطلب من قِبل المديرية العامة للرومانسية','محاولة التهرّب من الموعد مرصودة… اختار جوابًا يليق بالمناسبة 😂❤️'],
- ['📅 تم رفض الطلب من قِبل المديرية العامة للرومانسية','خير البرّ عاجله، والتأجيل مش داخل ضمن صلاحياتك 🌝'],
- ['🚗 تم رفض الطلب من قِبل المديرية العامة للرومانسية','المديرية مصرّة على عشاء ولفة بالسيارة… حاول مرة ثانية 😂'],
- ['🍔 تم رفض الطلب من قِبل المديرية العامة للرومانسية','القرار الغذائي محسوم من الإدارة العليا: برجر! 🌝'],
- ['🕗 تم رفض الطلب من قِبل المديرية العامة للرومانسية','الساعة ٨ المسا، لا بكير ولا متأخر… قرار نهائي 😂']
+const replies = [
+ ['🚨 طلب تأجيل الموعد مرفوض!','وزارة الطلعات بتطلب منك إعادة التفكير… جرّب جوابًا ألطف 😌'],
+ ['📢 تم رصد محاولة تهرّب!','الرومانسية بدها شوية مجهود يا حبيبي. جرّب مرة ثانية 💗'],
+ ['🙅‍♀️ هذا الخيار لم يجتز الفحص!','نرجو اختيار نشاط يليق بموعد تحت إشراف الزوجة 😂'],
+ ['🍽️ لجنة الطعام غير موافقة!','فكّر بوجبة فيها شوية حبّ واهتمام… وحاول من جديد 😭'],
+ ['💸 قسم الميزانية عنده ملاحظات!','الموعد مش لازم يكون غالي، بس صفر شيكل؟ بدنا نراجع القرار 🌝']
 ];
-function header(){return `<div class="topline"><span class="stamp">💌 تصريح موعد رسمي</span><span class="mini">وزارة الطلعات والشؤون الزوجية</span></div>`}
-function renderIntro(){step=-1;app.innerHTML=`${header()}<div class="heart">💗</div><h1>وزارة الطلعات<br>والشؤون الزوجية</h1><p class="sub">إلى الزوج الحبيب: في طلب رسمي لعزومة زوجتك الحلوة على موعد خاصّ… يرجى الإجابة بكل أمانة، علمًا بأن المديرية تراقب تحركاتك 🌝</p><button class="btn primary" onclick="start()">فتح الطلب الرسمي 💌</button><div class="footer">الرومانسية مسؤولية مشتركة… بس اليوم الدور عليك 😂❤️</div>`}
-function start(){step=0;renderYesNo()}
-function renderYesNo(){
- app.innerHTML=`${header()}<div class="heart">🥹💗</div><h1>حاب تعزمني على موعد خاصّ، صح؟</h1><p class="sub">سؤال بسيط جدًا… والإجابة الصحيحة معروفة مسبقًا 🌝</p><div class="yesno"><button class="btn primary" onclick="acceptYes()">نعم طبعًا يا روحي ❤️</button><button id="noBtn" class="btn secondary runaway" onpointerenter="runAway()" onclick="runAway()">لا 🙄</button></div><div id="notice" class="notice"></div><div class="footer">ملاحظة: زر «لا» عنده خوف من الالتزام 😂</div>`;
- const no=document.getElementById('noBtn'); no.addEventListener('touchstart',runAway,{passive:true});
+function header(stepNum=0){return `<div class="topline"><span class="stamp">💌 تصريح موعد رسمي</span><span class="mini">وزارة الطلعات والشؤون الزوجية</span></div>${stepNum?`<div class="progress">${questions.map((q,i)=>`<span class="${i<stepNum?'active':''}"></span>`).join('')}</div>`:''}`}
+function renderIntro(){
+ app.innerHTML = `${header()}<div class="heart">💗</div><h1>وزارة الطلعات<br>والشؤون الزوجية</h1><p class="sub">طلب رسمي لترتيب موعد رومانسي مع الزوج المحبوب.<br>يرجى الإجابة بصدق… مع العلم أن بعض الخيارات قد لا تنال موافقة الإدارة 🌝</p><button class="btn primary" onclick="start()">تقديم طلب الطلعة 💌</button><div class="footer">نحبّك، لكن الطلبات تخضع للمراجعة 😂</div>`;
 }
-function runAway(){const b=document.getElementById('noBtn');if(!b)return;const box=b.parentElement.getBoundingClientRect();const maxX=Math.max(0,box.width-b.offsetWidth);b.style.position='relative';b.style.left=(Math.random()*Math.min(maxX,160)-Math.min(maxX,160)/2)+'px';b.style.top=(Math.random()*70-35)+'px';const n=document.getElementById('notice');n.innerHTML='🚨 تم رفض الطلب من قِبل المديرية العامة للرومانسية 😂<br>حتى زر «لا» مش موافق معك! جرّب «نعم» يا حبيبي ❤️';n.classList.add('show')}
-function acceptYes(){step=0;renderQuestion()}
-function renderQuestion(){const q=questions[step];app.innerHTML=`${header()}<div class="progress">${questions.map((x,i)=>`<span class="${i<=step?'active':''}"></span>`).join('')}</div><div class="center" style="margin-top:18px"><span class="question-tag">${q.tag}</span></div><div class="heart" style="font-size:49px;margin:10px auto 0">${q.emoji}</div><h2>${q.title}</h2><p class="sub">${q.sub}</p><div class="options">${q.options.map((o,i)=>`<button class="option" onclick="choose(${i},this)"><span class="emoji">${o[0]}</span><span>${o[1]}</span></button>`).join('')}</div><div id="notice" class="notice"></div><button id="next" class="btn primary" style="display:none" onclick="next()">${step===questions.length-1?'إصدار التصريح النهائي 🎟️':'موافقة الإدارة؟ كمّل 💗'}</button><div class="footer">كل الخيارات تخضع لموافقة المديرية العامة للرومانسية 🌝</div>`}
-function choose(i,el){const q=questions[step],o=q.options[i];document.querySelectorAll('.option').forEach(b=>b.classList.remove('good','bad'));const note=document.getElementById('notice');if(o[2]!=='good'){el.classList.add('bad');const r=rejection[step+1];note.innerHTML=`<strong>${r[0]}</strong><br>${r[1]}`;note.classList.add('show');document.getElementById('next').style.display='none';return}el.classList.add('good');state[q.key]=o[1];note.innerHTML='✅ اختيار معتمد رسميًا… هيك الحكي ولا بلاش! 💗';note.classList.add('show');document.getElementById('next').style.display='block'}
+function start(){step=0;renderQuestion()}
+function renderQuestion(){
+ const q=questions[step];
+ app.innerHTML=`${header(step+1)}<div class="center" style="margin-top:18px"><span class="question-tag">${q.tag}</span></div><div class="heart" style="font-size:49px;margin:10px auto 0">${['📆','💞','✨','🍕','💸'][step]}</div><h2>${q.title}</h2><p class="sub">${q.sub}</p><div class="options">${q.options.map((o,i)=>`<button class="option" onclick="choose(${i},this)"><span class="emoji">${o[0]}</span><span>${o[1]}</span></button>`).join('')}</div><div id="notice" class="notice"></div><button id="next" class="btn primary" style="display:none" onclick="next()">موافقة الإدارة؟ كمّل 💗</button><div class="footer">كل الإجابات تُراجع من قبل الزوجة 🌝</div>`;
+}
+function choose(i,el){
+ const q=questions[step], option=q.options[i];
+ document.querySelectorAll('.option').forEach(b=>{b.classList.remove('good','bad')});
+ const note=document.getElementById('notice');
+ if(option[2]==='bad'){
+   el.classList.add('bad');
+   const r=replies[step];
+   note.innerHTML=`<strong>${r[0]}</strong><br>${r[1]}`;
+   note.classList.add('show');
+   document.getElementById('next').style.display='none';
+   state[q.key]='';
+   return;
+ }
+ el.classList.add('good');state[q.key]=option[1];
+ note.innerHTML='✅ اختيار مقبول من الإدارة… أخيرًا جواب يفرّح القلب! 💗';
+ note.classList.add('show');
+ document.getElementById('next').style.display='block';
+}
 function next(){if(!state[questions[step].key])return;if(step<questions.length-1){step++;renderQuestion()}else renderFinal()}
-const invite=`حبيبتي ❤️\n\nأنا بعزمك بكرا عالمطعم الي اكلنا فيه برجر بيوم ميلادك الساعة 8:00 المسا.\n\nوبشهد إني اخترت كل هالقرارات بإرادتي الحرة تماماً، وما حدا أجبرني على شيء 😂❤️\n\nجهّزي حالك، بحبّك كثير💕`;
-function renderFinal(){app.innerHTML=`${header()}<div class="heart">🎟️</div><h1>تمت الموافقة يا حبيبي! 💗</h1><p class="sub">بعد مراجعة دقيقة، أصدرت المديرية التصريح الرسمي للموعد الرومانسي.</p><div class="ticket"><div class="ticket-title">تصريح موعد رومانسي 💌</div><div class="ticket-sub">صادر عن وزارة الطلعات والشؤون الزوجية</div><div class="ticket-row"><span>📅 الموعد</span><strong>بكرا</strong></div><div class="ticket-row"><span>📍 الخطة</span><strong>عشاء بمطعم ولفة بالسيارة</strong></div><div class="ticket-row"><span>🍔 العشاء</span><strong>برجر عند المطعم الي جربناه مع بعض 🌝</strong></div><div class="ticket-row"><span>🕗 الساعة</span><strong>٨:٠٠ مساءً</strong></div><div class="final-note">وبهيك تم اعتماد كل القرارات بإرادته الحرة تمامًا… حسب إفادته الرسمية 😂❤️</div></div><h2 style="font-size:23px">وجهّزنالك دعوة ترسلها لزوجتك الحلوة 💕</h2><p class="sub">انسخ النص الجاهز أو احفظ بطاقة الدعوة وابعثها إلها.</p><div class="invite-card" id="inviteCard"><div class="invite-decor">♥ ✦ ♥</div><div class="invite-heading">دعوة من القلب</div><div class="invite-body">حبيبتي ❤️<br><br>أنا بعزمك بكرا عالمطعم الي اكلنا فيه برجر بيوم ميلادك الساعة 8:00 المسا.<br><br>وبشهد إني اخترت كل هالقرارات بإرادتي الحرة تماماً، وما حدا أجبرني على شيء 😂❤️<br><br>جهّزي حالك، بحبّك كثير💕</div><div class="invite-decor">♡ موعدنا بكرا ♡</div></div><button class="btn primary" onclick="copyInvite()">📋 انسخ الدعوة الجاهزة</button><button class="btn secondary" onclick="window.print()">💌 احفظ البطاقة / اطبعها PDF</button><div id="copyNotice" class="notice"></div><button class="btn secondary" onclick="restart()">نعيد الطلب من الأول 🔄</button><div class="footer">تمت الموافقة بحبّ شديد 💗</div>`}
-async function copyInvite(){try{await navigator.clipboard.writeText(invite);showCopy('انسخت الدعوة! ابعثها لحبيبتك هسا ❤️')}catch(e){const ta=document.createElement('textarea');ta.value=invite;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showCopy('انسخت الدعوة! ❤️')}}
-function showCopy(t){const n=document.getElementById('copyNotice');n.textContent=t;n.classList.add('show')}
-function restart(){state.day='بكرا';state.place='عشاء بمطعم ولفة بالسيارة';state.food='برجر (عند المطعم الي جربناه مع بعض 🌝)';state.time='الساعة ٨:٠٠ مساءً';renderIntro()}
+function renderFinal(){
+ app.innerHTML=`${header()}<div class="heart">🎟️</div><h1 style="font-size:31px">تمت الموافقة يا حبيبي! 💗</h1><p class="sub">بعد مراجعة دقيقة ومداولات طويلة، تم اعتماد طلب الموعد رسميًا.</p><div class="ticket"><div class="ticket-title">تذكرة موعدنا الرومانسي 💌</div><div class="ticket-sub">صادرة عن وزارة الطلعات والشؤون الزوجية</div><div class="ticket-row"><span>📅 الموعد</span><strong>${state.day}</strong></div><div class="ticket-row"><span>💞 الأجواء</span><strong>${state.vibe}</strong></div><div class="ticket-row"><span>✨ النشاط</span><strong>${state.activity}</strong></div><div class="ticket-row"><span>🍽️ الأكل</span><strong>${state.food}</strong></div><div class="ticket-row"><span>💸 الميزانية</span><strong>${state.budget}</strong></div></div><div class="final-note">شرط التذكرة: طلعة حلوة، ضحك كثير، وموبايلات على جنب شوي 🥹❤️<br>ممنوع إلغاء الموعد بدون موافقة الإدارة 🌝</div><button class="btn primary" onclick="window.print()">🖨️ احفظوا التذكرة / اطبعوها</button><button class="btn secondary" onclick="restart()">نعيد الطلب من الأول 🔄</button><div class="footer">تمت الموافقة بحبّ شديد 💗</div>`;
+}
+function restart(){for(const k in state)state[k]='';renderIntro()}
 renderIntro();
 </script>
 </body>
